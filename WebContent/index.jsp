@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="api.APIHandler"%>
 <%@ page import="cinema.Movie"%>
+<%@ page import="cinema.MovieDataHandler"%>
 <!DOCTYPE html>
 <html>
 	<%@ include file="header.jsp" %>
@@ -8,7 +9,15 @@
 	<script src="./js/index.js"></script>
 	
 	<body>
-		<% Movie[] movies = APIHandler.getAPI(); %>
+		<%
+			MovieDataHandler handler = new MovieDataHandler();
+			Movie[] movies = handler.getMovies();
+			
+			if(movies == null){
+				movies = APIHandler.getAPI();
+				handler.sendMovies(movies);
+			}
+		%>
 		
 		<div class="container-fluid content" style="float: center">
 	        <div class="row">
