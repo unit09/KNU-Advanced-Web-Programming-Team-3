@@ -1,14 +1,19 @@
+package cinema;
 
 public class Movie {
 	private int id;
-	private String title;
+	private String title;		
 	private String genre;
 	private double rating;
 	private int runningTime;
-	private String director;
-	private String actors;
-	private String plot;
-	private String posterURL;
+	private String director;	//credit -> search need
+	private String actors;		//credit -> search need
+	private String plot;		
+	private String posterURL;	
+	
+	public Movie(int id) {
+		this.id = id;
+	};
 	
 	public Movie(int id, String title, String genre, double rating, int runningTime, 
 					String director, String actors, String plot, String posterURL) {

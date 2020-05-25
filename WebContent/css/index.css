@@ -1,0 +1,20 @@
+.content {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.list-group a {
+    text-align: left;
+}
+.carousel-caption > p{
+    font-size: 2vh;
+}
+#myCarousel{
+    margin-left: 10px;
+    width: 40vw;
+    height:120vh;
+}
+.carousel-inner > .carousel-item > img {
+    width: 100%;
+	height: 100%;
+}
