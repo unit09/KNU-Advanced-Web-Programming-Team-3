@@ -2,24 +2,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>CINE KNU</title>
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/common.css">
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="./index.jsp">CINE KNU</a>
 	
     <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarToggler"
-      aria-controls="navbarToggler"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+    	class="navbar-toggler"
+      	type="button"
+      	data-toggle="collapse"
+      	data-target="#navbarToggler"
+      	aria-controls="navbarToggler"
+      	aria-expanded="false"
+      	aria-label="Toggle navigation"
     >
     	<span class="navbar-toggler-icon"></span>
     </button>
@@ -36,11 +37,7 @@
 
       	<ul class="navbar-nav ml-auto">
         	<li class="nav-item">
-          		<button
-            		class="btn btn-success"
-            		id="loginButton"
-            		style="width:auto;"
-          		>
+          		<button class="btn btn-success" id="loginButton" style="width:auto;">
             		Login
           		</button>
        		</li>

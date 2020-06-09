@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="api.APIHandler"%>
-<%@ page import="cinema.Movie"%>
-<%@ page import="cinema.MovieDataHandler"%>
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="api.APIHandler" %>
+<%@ page import="cinema.Movie" %>
+<%@ page import="cinema.MovieDataHandler" %>
+
 <html>
 	<%@ include file="header.jsp" %>
 	<link type="text/css" rel="stylesheet" href="./css/index.css?v=3"></link>
@@ -17,6 +17,8 @@
 				movies = APIHandler.getAPI();
 				handler.sendMovies(movies);
 			}
+			
+			handler.closeCon();
 		%>
 		
 		<div class="container-fluid content" style="float: center">
@@ -29,9 +31,9 @@
 	                            <% for(int i = 0; i < movies.length; i++){ %>
 		                            <% String title = movies[i].getTitle(); %>
 		                            <% double vote_average = movies[i].getRating(); %>
-		                            <a href='#myCarousel' data-slide-to=<%= i %> class='list-group-item list-group-item-action' id='list_<%= i %>'>  
-		                                &starf;&nbsp;&nbsp;<%= vote_average %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= title %>&nbsp;
-		                            </a>
+			                        <a href='#myCarousel' data-slide-to=<%= i %> class='list-group-item list-group-item-action' id='list_<%= i %>'>
+			                        	&starf;&nbsp;&nbsp;<%= vote_average %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= title %>&nbsp;
+			                    	</a>
 	                            <% } %>
 	                        </ul>
 	                    </div>  <!-- row2 col5 -->

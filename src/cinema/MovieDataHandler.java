@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class MovieDataHandler {
 	private Connection con;
     private ResultSet rs;
-    Statement stmt = null;
+    private Statement stmt = null;
     
     public MovieDataHandler() {
     	String dbURL = "jdbc:mysql://localhost:3306/cinema_db?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
@@ -79,6 +79,13 @@ public class MovieDataHandler {
     }
     
     public void closeCon() {
-    	
+    	try {
+    		rs.close();
+    		stmt.close();
+    		con.close();
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.getMessage());
+    	}
     }
 }
