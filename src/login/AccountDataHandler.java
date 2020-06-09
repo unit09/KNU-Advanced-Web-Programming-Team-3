@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.cj.jdbc.DatabaseMetaData;
@@ -93,6 +94,14 @@ public class AccountDataHandler {
 		}
 		
 		return null;
+	}
+	
+	public void close() {
+		try {
+			stmt.close();
+			rs.close();
+			con.close();
+		} catch (SQLException e) {}
 	}
     
 //    public MovieDataHandler() {

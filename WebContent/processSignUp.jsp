@@ -14,5 +14,7 @@
 	adh.signup(name, id, pw, email);
 	
 	out.println("회원가입에 성공하였습니다.");
+	
+	adh.close();
 
 %>

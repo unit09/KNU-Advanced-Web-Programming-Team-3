@@ -21,5 +21,7 @@
 	} else { //로그인 실패
 		out.println("로그인에 실패하였습니다.");
 	}
+	
+	adh.close();
 
 %>
