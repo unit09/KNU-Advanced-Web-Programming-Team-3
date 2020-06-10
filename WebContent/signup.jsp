@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="header.jsp" %>
 <link type="text/css" rel="stylesheet" href="./css/login.css"></link>
 <title>회원가입</title>
 </head>
 <body>
-	<div class="container text-center">
+<%@ include file="header.jsp" %>
+	<div class="container text-center p-3">
 		<form class="form-login text-center jumbotron" action="./processSignUp.jsp" method="post">
 			<h1 class="mb-5 text-secondary">회원가입</h1>
 			

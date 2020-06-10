@@ -2,13 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="header.jsp" %>
 <link type="text/css" rel="stylesheet" href="./css/login.css"></link>
 <title>로그인</title>
 </head>
 <body>
-
-	<div class="container text-center">
+<%@ include file="header.jsp" %>
+	<div class="container text-center p-3">
 		<form class="form-login text-center jumbotron" action="processLogin.jsp" method="post">
 			<h1 class="mb-3 text-secondary">로그인</h1>
 			<input type="text" id="input-id" name="input-id" class="mb-2 p-2 border border-secondary form-control" placeholder="ID" required>
