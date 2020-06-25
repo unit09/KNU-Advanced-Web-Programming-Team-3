@@ -8,12 +8,12 @@
 <%
 	String arr = request.getParameter("arr");
 	String[] checked = arr.split(",");
-	int userId = 1;	// 나중에 세션으로 받아오기
-	int timeslotId = 1;	// 이거도 세션으로? 아님 딴걸로?
+	String userId = (String)session.getAttribute("userId");
+	int timeslotId = 7;
 	
-	String dbURL = "jdbc:mysql://localhost:3306/cinema_db?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
-    String dbID = "test";
-    String dbPassword = "test";
+	String dbURL = "jdbc:mysql://jjo.kr:33066/boram3jo?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
+    String dbID = "boram3jo";
+    String dbPassword = "15881009";
     Connection con = null;
     ResultSet rs;
     Statement stmt = null;
@@ -42,7 +42,7 @@
     			return;
     		}
     		else {
-    			pstmt.setInt(1, userId);
+    			pstmt.setString(1, userId);
     			pstmt.setInt(2, timeslotId);
     			pstmt.setInt(3, Integer.parseInt(checked[i]));
     			

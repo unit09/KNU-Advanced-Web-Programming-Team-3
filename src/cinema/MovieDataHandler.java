@@ -11,9 +11,9 @@ public class MovieDataHandler {
     private Statement stmt = null;
     
     public MovieDataHandler() {
-    	String dbURL = "jdbc:mysql://localhost:3306/cinema_db?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
-        String dbID = "test";
-        String dbPassword = "test";
+    	String dbURL = "jdbc:mysql://jjo.kr:33066/boram3jo?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
+        String dbID = "boram3jo";
+        String dbPassword = "15881009";
         
         try {
         	Class.forName("com.mysql.cj.jdbc.Driver");

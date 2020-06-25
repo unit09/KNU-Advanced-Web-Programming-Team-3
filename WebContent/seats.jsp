@@ -10,8 +10,8 @@
 	
 	<body>
 		<%
-			int userId = 1;	// 나중에 세션에서 받아오는 걸로 변경
-			int timeslotId = 1;
+			String userId = (String)session.getAttribute("userId");
+			int timeslotId = 7;	// 여기에는 필요없나?
 		%>
 	
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,8 +47,8 @@
 		      	
 		      	<ul class="navbar-nav ml-auto">
 		        	<li class="nav-item">
-		        		<form name="ticketing" action="./ticketingProcess.jsp" method="post">
-		        			<input type="button" class="btn btn-secondary" id="makeButton" style="width:auto;" onclick="check(1, 1)" value="예매하기">
+		        		<form name="ticketing" action="./processTicketing.jsp" method="post">
+		        			<input type="button" class="btn btn-secondary" id="makeButton" style="width:auto;" onclick="check('<%= userId %>')" value="예매하기">
 		        			<input type="hidden" name="arr" id="arr">
 		        		</form>
 		       		</li>

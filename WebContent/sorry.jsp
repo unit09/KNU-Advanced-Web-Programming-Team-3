@@ -3,12 +3,23 @@
 <!DOCTYPE html>
 <html>
 	<%@ include file="header.jsp" %>
-	<link type="text/css" rel="stylesheet" href="./css/seats.css?v=3"></link>
-	<script src="./js/seats.js"></script>
 	
 	<body>
-		<p>Oops! 이미 예약된 좌석이거나 다른 문제가 발생했습니다.
-		<p>그러게 빨리 하시지 그랬어요. 애석하게 생각합니다.
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Oops! 예매에 실패하였습니다</h1>
+				<div style="margin-top:30px">
+					<p>이미 예약된 좌석이거나 서버에 연결하는데 실패하였습니다. 다시 시도해주시기 바랍니다.
+					<p>불편을 끼쳐드려서 죄송합니다.
+				</div>
+				<p>
+					<a class="btn btn-primary btn-lg" href="./seats.jsp" role="button">되돌아가기 >></a>
+				</p>
+			</div>
+		</div>
+
+		<div style="height:250px">
+		</div>
 
 		<%@ include file="footer.jsp" %>		
 	</body>

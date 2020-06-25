@@ -61,7 +61,7 @@ function change(now){
     }
 }	
 
-function check(user_id, ts_id){
+function check(user_id){
 	var checked = new Array();
 	
 	for(var i = 1; i <= 50; i++){
@@ -69,8 +69,8 @@ function check(user_id, ts_id){
 			checked.push(i);
 		}
     }
-
-    if(user_id == ''){
+	
+    if(user_id == 'null'){
     	swal("로그인 필요!", "좌석을 예매하시려면 로그인이 필요합니다.", "error");
     }
     else{

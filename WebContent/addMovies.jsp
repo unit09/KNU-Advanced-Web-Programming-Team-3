@@ -1,6 +1,5 @@
 <%@page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="EUC-KR"%>
 
 <%
 	Connection conn = null;                                        // null로 초기화 한다.
@@ -32,8 +31,7 @@
 <html>
 	<!-- header 부분  -->
 	<%@ include file="header.jsp" %>
-	<link type="text/css" rel="stylesheet" href="./css/index.css?v=3"></link>
-	<script src="./js/index.js"></script>
+	<script src="./js/addMovies.js"></script>
 		
 	<!-- body 부분 -->
 	<body>
@@ -103,34 +101,7 @@
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript">
-		function CheckAddMovies() {
-			var moviename = document.querySelector("[name=moviename]"); //영화 이름
-			var movietime = document.querySelector("[name=time]");
-			var movieplace = document.querySelector("[name=place]");
-			var moviefloor = document.querySelector("[name=floor]");
-			var movieservice = document.querySelector("[name=service]");
-			var movieprice = document.querySelector("[name=price]");
-			
-			if(moviename.value == ""){
-				alert("영상을 선택해주세요");
-				return;
-			}
-			if(movieplace.value == ""){
-				alert("상영관을 선택해 주세요");
-				return;
-			}
-			if(movietime.validity.vaild == false){
-				alert("시간을 설정해 주세요");
-				return;
-			}
-			if(movieprice.value < 0 || movieprice.value > 20000 || movieprice.value == ""){
-				alert("0원에서 2만원 사이의 값을 입력해주세요");
-				return;
-			}
-			document.querySelector("form").submit();
-		}
-	</script>
+	
 	<%
 		// 6. 사용한 Statement 종료
 		if(rs != null) try { rs.close(); } catch(SQLException ex) {}

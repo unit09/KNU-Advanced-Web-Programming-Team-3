@@ -1,0 +1,29 @@
+.form-login {
+	width: 100%;
+	margin: auto;
+	max-width: 400px;
+}
+
+html, body {
+	height: 100%;
+}
+
+.container {
+	height: 100%;
+	display: flex;
+	align-content: center;
+}
+
+
+
+
+.input-title {
+	color: #232323;
+	text-align: left;
+	font-size: 80%;
+	font-weight: 400;
+}
+
+.-mt-5px {
+	margin-top: -5px;
+}
