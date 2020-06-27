@@ -11,7 +11,9 @@
 	
 	if(adh.login(id, pw)) { //로그인 성공
 		session.setAttribute("userId", id);
+		session.setAttribute("userPw", pw);
 		session.setAttribute("userName", adh.getUserName(id));
+		session.setAttribute("userEmail", adh.getEmail(id));
 		out.println(adh.getUserName(id) + "님이 로그인에 성공하였습니다.");
 		
 		//로그인 성공시 다른 페이지에서 user id를 받아오려면 session.getAttribue("userId");

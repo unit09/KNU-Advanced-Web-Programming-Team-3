@@ -36,13 +36,13 @@
 
       	<ul class="navbar-nav ml-auto">
         	<li class="nav-item">
-          		<button
+          		<a href="./login.jsp"
             		class="btn btn-success"
             		id="loginButton"
             		style="width:auto;"
           		>
             		Login
-          		</button>
+          		</a>
        		</li>
     	</ul>
 	</div>

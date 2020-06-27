@@ -1,14 +1,8 @@
-.form-login {
+.form-mypage {
 	width: 100%;
 	margin: auto;
 	max-width: 400px;
 }
-
-.container {
-	display: flex;
-	align-content: center;
-}
-
 
 
 
@@ -25,7 +19,6 @@
 
 
 
-
 .wrapper {
 	display: flex;
 	flex-direction: row;
@@ -34,10 +27,34 @@
 .sidebar {
 	background-color: #ececec;
 	flex-grow: 200px;
+	min-width: 130px;
 }
 
 .nav-item {
 	margin-bottom: 10px;
 	font-size: small;
 	font-weight: 600;
+}
+
+.nav-item a {
+	color: #003246;
+	display: block;
+}
+
+.nav-item a:hover {
+	color: #003246;
+	text-decoration: none;
+}
+
+
+
+.img-cropper {
+	overflow: hidden;
+	height: 300px;
+}
+
+.img-cropper img {
+	min-height: 100%;
+	margin-top: -50%;
+	width: 100%;
 }

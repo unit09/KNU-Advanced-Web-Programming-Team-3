@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.mysql.cj.jdbc.DatabaseMetaData;
 import com.mysql.cj.xdevapi.PreparableStatement;
@@ -20,9 +23,9 @@ public class AccountDataHandler {
 	private Statement stmt;
 
 	public AccountDataHandler() {
-		String dbURL = "jdbc:mysql://localhost:3306/cinema_db?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
-		String dbID = "test";
-		String dbPassword = "test";
+		String dbURL = "jdbc:mysql://jjo.kr:33066/boram3jo?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
+		String dbID = "boram3jo";
+		String dbPassword = "15881009";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,14 +43,14 @@ public class AccountDataHandler {
 			rs = meta.getTables(null, null, "account", null);
 			
 			if(!rs.next()) { //account 테이블 없으면 테이블 생성
-				String sql = "CREATE TABLE ACCOUNT (NO INTEGER NOT NULL AUTO_INCREMENT, NAME VARCHAR(20), id VARCHAR(20), pw VARCHAR(20), email VARCHAR(20), PRIMARY KEY (NO))";
+				String sql = "CREATE TABLE account (NO INTEGER NOT NULL AUTO_INCREMENT, NAME VARCHAR(20), id VARCHAR(20), pw VARCHAR(20), email VARCHAR(20), PRIMARY KEY (NO))";
 				stmt.executeUpdate(sql);
 			}
 
 			//account 테이블에 회원 정보 기입
 			String sql = String.format("INSERT INTO account (name, id, pw, email) VALUES ('%s', '%s', '%s', '%s')", name, id, pw, email);
-			System.out.println("회원 정보 기입 성공: " + sql);
 			stmt.executeUpdate(sql);
+			System.out.println("회원 정보 기입 성공: " + sql);
 		} catch (Exception e) {
 			System.out.println("회원 정보 기입 실패: " + e);
 		}
@@ -98,82 +101,55 @@ public class AccountDataHandler {
 	
 	public void close() {
 		try {
-			stmt.close();
-			rs.close();
-			con.close();
-		} catch (SQLException e) {}
+			if(stmt != null) stmt.close();
+			if(rs != null) rs.close();
+			if(con != null) con.close();
+		} catch (Exception e) {}
 	}
-    
-//    public MovieDataHandler() {
-//    	String dbURL = "jdbc:mysql://localhost:3306/cinema_db?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
-//        String dbID = "test";
-//        String dbPassword = "test";
-//        
-//        try {
-//        	Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection(dbURL,dbID,dbPassword);
-//        }
-//        catch(Exception e) {
-//        	System.out.println("find E" + e.getMessage());
-//        }
-//    }
-//    
-//    public Movie[] getMovies() {
-//    	String sql = "SELECT * FROM movie";
-//    	Movie[] movies = new Movie[20];
-//    	
-//    	try {
-//    		stmt = con.createStatement();
-//    		rs = stmt.executeQuery(sql);
-//    		
-//    		if(rs.next()) {
-//    			int i = 1;
-//    			
-//    			do {
-//    				Movie temp = new Movie(i, rs.getString("title"), rs.getString("genre"), 
-//    										rs.getDouble("rating"), rs.getInt("runtime"), 
-//    										rs.getString("director"), rs.getString("actors"), 
-//    										rs.getString("plot"), rs.getString("posterURL"));
-//    				movies[i - 1] = temp;
-//    				i++;
-//    			}while(rs.next());
-//    		}
-//    		else {
-//    			movies = null;
-//    		}
-//    	}
-//    	catch(Exception e) {
-//        	System.out.println(e.getMessage());
-//        }
-//    	
-//    	return movies;
-//    }
-//    
-//    public void sendMovies(Movie[] movies) {
-//    	String sql = "insert into movie values ";
-//    	
-//    	for(int i = 0; i < movies.length; i++) {
-//    		sql += "(" + movies[i].getId() + ",\"" + movies[i].getTitle() + "\",\"" + movies[i].getGenre() + "\"," 
-//    				+ movies[i].getRating() + "," + movies[i].getRunningTime() + ",\"" + movies[i].getDirector()
-//    				+ "\",\"" + movies[i].getActors() + "\",\"" + movies[i].getPlot() + "\",\""
-//    				+ movies[i].getPosterURL() + "\")";
-//    		
-//    		if(i != movies.length - 1) {
-//    			sql += ",";
-//    		}
-//    	}
-//    	
-//    	try {
-//    		int result = stmt.executeUpdate(sql);
-//        	System.out.println(result + " row inserted");
-//    	}
-//    	catch(Exception e) {
-//        	System.out.println(e.getMessage());
-//        }
-//    }
-//    
-//    public void closeCon() {
-//    	
-//    }
+	
+	//id를 주면 email을 반환 (없는 id면 null 반환)
+	public String getEmail(String id) {
+		try {
+			String sql = String.format("SELECT * FROM account WHERE id='%s'", id);
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) { //id 존재
+				return rs.getString("email");
+			} else { //id 미존재 (null 반환)
+				return null;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
+	
+	//예약된 영화가 없으면 빈 ArrayList<HashMap> 반환, 에러나면 null 반환 (userId는 session.getAttribute("userId")를 통해서 얻을 수 있음)
+	public ArrayList<HashMap<String, String>> getAllReservations(String userId) {
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		
+		try {
+			String sql = String.format("select title, starttime, seat_number, date, posterURL from ticket t, timeslot ts, movie m where t.user_id=\"%s\" and m.id = ts.movie and ts.id = t.timeslot_id;", userId);
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) { //예약된 영화 존재
+				
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("title", rs.getString("title"));
+				map.put("starttime", rs.getString("starttime"));
+				map.put("seat_number", rs.getString("seat_number"));
+				map.put("date", rs.getString("date"));
+				map.put("posterURL", rs.getString("posterURL"));
+				
+				list.add(map);
+			}
+		} catch(Exception e) {
+			System.out.println("예약된 영화를 불러오는데 실패하였습니다.");
+			return null;
+		}
+		
+		return list;
+	}
 	
 }

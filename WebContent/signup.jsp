@@ -10,7 +10,7 @@
 <body>
 <%@ include file="header.jsp" %>
 	<div class="container text-center p-3">
-		<form class="form-login text-center jumbotron" action="./processSignUp.jsp" method="post">
+		<form class="form-login text-center jumbotron pt-4 pb-4" action="./processSignUp.jsp" method="post">
 			<h1 class="mb-5 text-secondary">회원가입</h1>
 			
 			<h5 class="input-title">성명</h5>
