@@ -21,13 +21,21 @@
 				</ul>
 			</div>
 		</nav>
-		<div class="content container text-center p-3">
-			<div class="row">
+		<div class="content container text-center p-3" style="min-height:500px">
+			<div class="row" style="height: 100%;">
 				<%
 					AccountDataHandler adh = new AccountDataHandler();
 					
 					String userId = session.getAttribute("userId").toString();
 					ArrayList<HashMap<String, String>> list = adh.getAllReservations(userId);
+					
+					if(list.size() == 0) {
+						%>
+						<div class="text-center jumbotron" style="margin:auto;">
+							<h3>예약된 영화가 없습니다.</h3>
+						</div>
+						<%
+					}
 					
 					for(HashMap<String, String> map : list) {
 						String title = map.get("title").toString();

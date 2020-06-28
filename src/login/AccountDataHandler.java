@@ -174,4 +174,14 @@ public class AccountDataHandler {
 		return true;
 	}
 	
+	//비밀번호 변경
+	public void setPw(String userId, String newPw) {
+		try {
+			String sql = String.format("UPDATE account SET pw=\"%s\" WHERE id=\"%s\";", newPw, userId);
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 }
