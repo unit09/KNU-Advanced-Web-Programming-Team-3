@@ -25,9 +25,16 @@ for(let i = 0; i < LENGTH; i++){
 
 
     $baby.querySelector("button").onclick = () => {
+
         $calendar.querySelector(".selected").classList.remove("selected");
         $baby.classList.add("selected");
         updateDate(date);
+
+        let select;
+        if((select = document.querySelector(".select_movie"))){
+            select.click();
+        }
+        
     };
     $calendar.append($baby);
 }
