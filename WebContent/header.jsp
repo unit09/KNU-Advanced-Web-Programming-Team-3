@@ -30,7 +30,10 @@
           		<a class="nav-link" href="./index.jsp">Movie Info</a>
         	</li>
         	<li class="nav-item">
-          		<a class="nav-link">Movie Reservation</a>
+          		<a class="nav-link" href="./myReservation.jsp">Movie Reservation</a>
+        	</li>
+        	<li class="nav-item">
+          		<a class="nav-link" href="./myPage.jsp">My Page</a>
         	</li>
       	</ul>
 
