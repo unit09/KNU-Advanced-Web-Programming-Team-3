@@ -1,53 +1,60 @@
 <%@page import="java.sql.*"%>
+
 <%
 
-request.setCharacterEncoding("euc-kr");
-String moviename = request.getParameter("moviename");
-String place = request.getParameter("place");
-String floor = request.getParameter("floor");
-String time = request.getParameter("time");
-String service = request.getParameter("service");
-String price = request.getParameter("price");
-
-out.println(moviename);
-out.println(place);
-out.println(floor);
-out.println(time);
-out.println(service);
-
-Connection conn = null;                                        // null·Î ÃÊ±âÈ­ ÇÑ´Ù.
-Statement stmt = null; // SQL±¸¹®À» ½ÇÇà
-
-try{
-	String url = "jdbc:mysql://jjo.kr:33066/boram3jo";        // »ç¿ëÇÏ·Á´Â µ¥ÀÌÅÍº£ÀÌ½º¸íÀ» Æ÷ÇÔÇÑ URL ±â¼ú
-	String id = "boram3jo";                                                    // »ç¿ëÀÚ °èÁ¤
-	String pw = "15881009";  // »ç¿ëÀÚ °èÁ¤ÀÇ ÆÐ½º¿öµå
-	
-	String query = "insert into timeslot(movie,place,starttime,endtime,price)values('" 
-	+ moviename + "','" + place + "','" + time + "',(select cast('" + time 
-		+ "' as datetime ) + interval (select runtime from movie where id = '" 
-		+ moviename + "') minute ), '" + price + "')";
-	Class.forName("com.mysql.jdbc.Driver");                       // µ¥ÀÌÅÍº£ÀÌ½º¿Í ¿¬µ¿ÇÏ±â À§ÇØ DriverManager¿¡ µî·ÏÇÑ´Ù.
-	conn=DriverManager.getConnection(url,id,pw);              // DriverManager °´Ã¼·ÎºÎÅÍ Connection °´Ã¼¸¦ ¾ò¾î¿Â´Ù.
-	stmt = conn.createStatement();
-	stmt.executeUpdate(query);
+	request.setCharacterEncoding("euc-kr");
+	String moviename = request.getParameter("moviename");
+	String place = request.getParameter("place");
+	String floor = request.getParameter("floor");
+	String time = request.getParameter("time");
+	String service = request.getParameter("service");
+	String price = request.getParameter("price");
 	
 	
-	}catch(Exception e){// ¿¹¿Ü°¡ ¹ß»ýÇÏ¸é ¿¹¿Ü »óÈ²À» Ã³¸®ÇÑ´Ù.
-	e.printStackTrace();
-}
+	Connection conn = null;                                        // nullï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ñ´ï¿½.
+	Statement stmt = null; // SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	
+	try{
+		String url = "jdbc:mysql://jjo.kr:33066/boram3jo";        // ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½
+		String id = "boram3jo";                                                    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String pw = "15881009";  // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
+		
+		String query = "insert into timeslot(movie,place,starttime,endtime,price)values('" 
+		+ moviename + "','" + place + "','" + time + "',(select cast('" + time 
+			+ "' as datetime ) + interval (select runtime from movie where id = '" 
+			+ moviename + "') minute ), '" + price + "')";
+		Class.forName("com.mysql.jdbc.Driver");                       // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ DriverManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		conn=DriverManager.getConnection(url,id,pw);              // DriverManager ï¿½ï¿½Ã¼ï¿½Îºï¿½ï¿½ï¿½ Connection ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
+		stmt = conn.createStatement();
+		stmt.executeUpdate(query);
+		
+		
+		}catch(Exception e){// ï¿½ï¿½ï¿½Ü°ï¿½ ï¿½ß»ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
+		e.printStackTrace();
+	}
 
-
+	//response.sendRedirect("addMovies.jsp");
 %>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-
+	<script>
+	swal({
+		title: "ì¶”ê°€ ì™„ë£Œ",
+		icon: "success"
+	}).then((result) => {
+		if(result){
+			location.href = 'addMovies.jsp';
+		}
+	});
+	</script>
 </body>
 </html>

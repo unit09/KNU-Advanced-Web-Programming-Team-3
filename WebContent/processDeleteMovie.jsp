@@ -28,5 +28,27 @@
     // 7. 커넥션 종료
     if(conn != null) try { conn.close(); } catch(SQLException ex) {}
     
-    response.sendRedirect("deleteMovies.jsp");
 %>
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	swal({
+		title: "삭제 완료",
+		icon: "success"
+	}).then((result) => {
+		if(result){
+			location.href = 'deleteMovies.jsp';
+		}
+	});
+	</script>
+</body>
+</html>
+
