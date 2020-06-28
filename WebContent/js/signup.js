@@ -65,3 +65,50 @@ function pwDoubleCheck() {
 	}
 	
 }
+
+
+
+//인증코드 이메일 발송
+function sendMail() {
+	
+	if($("#input-email").val() == "" || $("#input-email").val() == null) return;
+	
+	window.name = "parentForm"; //부모 창 이름
+	window.open("./processSendMail.jsp?email=" + $("#input-email").val() + $("#input-email-kind").val(), "childForm", "width=1,height=1"); //childForm이란 이름의 자식창 팝업
+	
+}
+
+
+
+
+//인증코드 일치 여부 검사
+function checkCode() {
+	
+	if($("#input-email-code").val() == $("#code-check").val()) { //인증번호 일치
+		$("#code-check").val("true");
+		$("#input-email-code").attr("readonly", true); //더이상 인증번호 입력란 못 건드리게
+		$("#input-email-code").addClass("border-success");
+		$("#check-code-button").addClass("d-none");
+		
+		//성공 alert 띄우기
+		$("#code-success-alert").removeClass("d-none");
+		$("#code-success-alert").addClass("show");
+	} else { //인증번호 미일치
+		$("#code-check").val("false");
+
+		//실패 alert 띄우기
+		$("#code-fail-alert").removeClass("d-none");
+		$("#code-fail-alert").addClass("show");
+	}
+	
+}
+
+
+
+//정상적인 이메일로 인증코드 받아서 인증받고는 엉뚱한 이메일로 바꿔버려서 가입하는 현상 방지
+function resetCode() {
+	$("#code-check").val("false");
+	$("#input-email-code").attr("readonly", false);
+	$("#input-email-code").removeClass("border-success");
+	$("#check-code-button").removeClass("d-none");
+}

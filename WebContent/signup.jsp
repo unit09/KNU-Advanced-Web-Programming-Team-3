@@ -31,7 +31,7 @@
 				</button>
 				해당 ID는 <strong>사용 할 수 없습니다</strong>.
 			</div>
-			<input type="hidden" id="id-check" class="mb-1 p-2 border border-secondary form-control" value="false"> <!-- 중복 검사 통과하면 value가 "true"가 됨(String임) -->
+			<input type="hidden" id="id-check" name="id-check" class="mb-1 p-2 border border-secondary form-control" value="false"> <!-- 중복 검사 통과하면 value가 "true"가 됨(String임) -->
 			
 			<h5 class="mt-4 input-title">비밀번호</h5>
 			<input type="password" id="input-pw" name="input-pw" class="mb-1 p-2 border border-secondary form-control" onkeyup="pwCheck(this.value); pwDoubleCheck()">
@@ -45,17 +45,17 @@
 			<h5 class="input-title">이메일</h5>
 			<div class="row">
 				<div class="col-md-6 pr-0">
-					<input type="text" id="input-email" name="input-email" class="mb-1 p-2 border border-secondary form-control" >
+					<input type="text" id="input-email" name="input-email" class="mb-1 p-2 border border-secondary form-control" onkeydown="resetCode()">
 				</div>
 				<div class="col-md-6 pl-1">
-					<select class="border border-secondary form-control">
+					<select id="input-email-kind" class="border border-secondary form-control" onchange="resetCode()">
 						<option>@naver.com</option>
 						<option>@gmail.com</option>
 					</select>
 				</div>
 			</div>
-			<button type="button" class="mb-2 btn btn-success btn-block btn-sm">인증코드 전송</button>
-			<div class="alert alert-primary alert-dismissable d-none fade small" role="alert">
+			<button type="button" class="mb-2 btn btn-success btn-block btn-sm" onclick="sendMail()">인증코드 전송</button>
+			<div id="code-send-alert" class="alert alert-primary alert-dismissable d-none fade small" role="alert">
 				<button type="button" class="close ml-2 -mt-5px" data-dismiss="" aria-label="Close">
 					<span id="code-send-x-button" aria-hidden="true" onClick="alertClose(this.id)">×</span>
 				</button>
@@ -64,19 +64,20 @@
 			
 			<h5 class="mt-4 input-title">이메일 인증코드</h5>
 			<input type="text" id="input-email-code" name="input-email-code" class="mb-1 p-2 border border-secondary form-control" >
-			<button type="button" class="mb-1 btn btn-success btn-block btn-sm">인증코드 확인</button>
-			<div class="alert alert-primary alert-dismissable d-none fade small" role="alert">
+			<button id="check-code-button" type="button" class="mb-1 btn btn-success btn-block btn-sm" onclick="checkCode()">인증코드 확인</button>
+			<div id="code-success-alert" class="alert alert-primary alert-dismissable d-none fade small" role="alert">
 				<button type="button" class="close ml-2 -mt-5px" data-dismiss="" aria-label="Close">
 					<span id="code-success-x-button" aria-hidden="true" onClick="alertClose(this.id)">×</span>
 				</button>
 				인증 성공
 			</div>
-			<div class="alert alert-danger alert-dismissable d-none fade small" role="alert">
+			<div id="code-fail-alert" class="alert alert-danger alert-dismissable d-none fade small" role="alert">
 				<button type="button" class="close ml-2 -mt-5px" data-dismiss="" aria-label="Close">
 					<span id="code-fail-x-button" aria-hidden="true" onClick="alertClose(this.id)">×</span>
 				</button>
 				인증 실패
 			</div>
+			<input type="hidden" id="code-check" name="code-check" class="mb-1 p-2 border border-secondary form-control" value="false">
 			
 			<button type="submit" class="mt-5 btn btn-primary btn-block">회원가입</button>
 		</form>
