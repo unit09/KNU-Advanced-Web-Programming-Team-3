@@ -70,7 +70,7 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
                         $box.append($audience);
 
                         let $section = document.createElement("div");
-                        $section.innerHTML = movie_place_detail.location + "관";
+                        $section.innerHTML = movie_place_detail.location + "층";
                         $section.classList.add("section");
                         $box.append($section);
 
