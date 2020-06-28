@@ -9,7 +9,7 @@
 	String name = request.getParameter("input-name");
 	String id = request.getParameter("input-id");
 	String pw = request.getParameter("input-pw");
-	String email = request.getParameter("input-email");
+	String email = request.getParameter("input-email") + request.getParameter("input-email-kind");
 	
 	adh.signup(name, id, pw, email);
 	
@@ -17,4 +17,7 @@
 	
 	adh.close();
 
+	response.sendRedirect("login.jsp");
+	
 %>
+

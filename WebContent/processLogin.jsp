@@ -26,4 +26,7 @@
 	
 	adh.close();
 
+	
+	response.sendRedirect("index.jsp");
+	
 %>
