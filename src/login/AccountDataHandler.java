@@ -152,4 +152,26 @@ public class AccountDataHandler {
 		return list;
 	}
 	
+	//아이디 중복 체크 true면 중복 없음, false면 중복 있음
+	public boolean idCheck(String id) {
+		if(id == "" || id == null) {
+			return false;
+		}
+		
+		try {
+			String sql = String.format("select * from account where id='%s'", id);
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) { //중복되는 아이디 존재
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
 }
