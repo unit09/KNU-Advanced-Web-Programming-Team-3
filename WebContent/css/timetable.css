@@ -2,13 +2,7 @@
     box-sizing: border-box;
 }
 
-.menu{
-    padding: 15px;
-    background-color: rgb(227, 220, 220);
-    text-align: center;
-}
-
-body{
+.main{
     position: absolute;
     top: 0;
     left: 0;
@@ -16,16 +10,16 @@ body{
     height: 100%;
     display: grid;
     grid-template-areas:
-        "H H"
-        "M D"
-        "L C"
-        "L X"
-        "F F"
+        "H H H H"
+        "B M D V"
+        "B L C V"
+        "B L X V"
+        "F F F F"
     ;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 0.5fr 1fr 2fr 0.5fr;
     grid-template-rows: auto auto auto 1fr;
-    gap: 5px;
 }
+
 .header{ grid-area: H; }
 .menu{ grid-area: M; }
 .date{ grid-area: D; }
@@ -33,6 +27,27 @@ body{
 #calendar{ grid-area: C; }
 .content{ grid-area: X; }
 .footer{grid-area: F;}
+.back{grid-area: B;}
+.vack{grid-area: V;}
+
+.back, .vack{
+    background-color: #3f3f3f;
+    background: linear-gradient(0deg, #222, #555);
+}
+
+.menu{
+    padding: 15px;
+    background-color: rgb(227, 220, 220);
+    text-align: center;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
 
 /*calendar 부분 */
 .date{
@@ -41,11 +56,17 @@ body{
     justify-content: center;
     text-align: center;
     font-size: 20px;
+    font-weight: bold;
     background-color: rgb(227, 220, 220);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #calendar{
     display: flex;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    overflow-x: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 #calendar>div{
     flex: 1 1;
@@ -78,9 +99,11 @@ button:focus{
 /* movie list부분 */
 
 .movie-list{
-    padding-left: 5px;
+    padding-left: 1px;
     list-style-type: none;
     overflow-y: auto;
+    margin-bottom: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .movie-list>li::before{
     display: inline-block;
@@ -113,6 +136,9 @@ li.age-19::before{
     padding-left: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     cursor: pointer;
 }
 
@@ -126,15 +152,15 @@ li.age-19::before{
 
 /* contents 부분 */
 
+.content{
+    overflow-y: auto;
+}
+
 .content .info_content .location{
     font-weight: bold;
     margin-top: 20px;
     margin-left: 10px;
     margin-bottom: 10px;
-}
-
-.content .info_content .info{
-    display: flex;
 }
 
 .content .info_content .info_box{
@@ -152,6 +178,7 @@ li.age-19::before{
         "T T"
         "A S"
     ;
+    float: left;
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
