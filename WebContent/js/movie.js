@@ -7,6 +7,7 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
     const $menu = document.querySelector(".menu");
 
     $menu.innerHTML = data[0].title; // 첫 번째 영화 제목을 초기값으로 줌
+    $menu.setAttribute("title", data[0].title);
 
     
     for(const movie of data){
@@ -14,6 +15,7 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
 
         $baby.classList.add(`age-${movie.age}`); // movie-age가 0이면 전체 이용가
         $baby.innerHTML = movie.title;
+        $baby.setAttribute("title", movie.title);
         
         $baby.onclick = () => {
 
@@ -26,6 +28,7 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
             $baby.classList.add("select_movie");
 
             $menu.innerHTML = $baby.innerHTML;
+            $menu.setAttribute("title", $baby.innerHTML);
 
             $content = document.querySelector(".content");
 
