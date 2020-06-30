@@ -29,56 +29,67 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
+	
+	
+	//인증코드 생성 (숫자 문자 문자 숫자 문자로 구성되어있음, 영어-숫자-영어-영어-숫자로 총 5자리)
+	code = "";
+	code += getRandomChar();
+	code += getRandomDigit();
+	code += getRandomChar();
+	code += getRandomChar();
+	code += getRandomDigit();
+	
+	new Thread(new Runnable() {
+		@Override
+		public void run() {
+			
+			
+			String email = request.getParameter("email").toString(); //회원 이메일
+			
+			Properties p = new Properties(); //stmp 서버에 접속하기 위한 정보를 담을 객체
+			p.put("mail.smtp.host", "gmail-smtp.l.google.com");
+			p.put("mail.smtp.starttls.enable", "true");
+			p.put("mail.smtp.auth", "true");
+			p.put("mail.smtp.debug", "true");
+			p.put("mail.smtp.socketFactory.port", "465");
+			p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			p.put("mail.smtp.socketFactory.fallback", "false");
+			
+			
+			
+			try {
+				
+				Authenticator auth = new SMTPAuthenticator();
+				Session ses = Session.getInstance(p, auth);
+				
+				ses.setDebug(true);
+				
+				MimeMessage msg = new MimeMessage(ses); //메일 내용을 담을 객체
+				msg.setSubject("회원가입 인증코드"); //메일 제목
+				
+				Address fromAddr = new InternetAddress("toonraon5@gmail.com"); //보내는 이메일 주소
+				msg.setFrom(fromAddr);
+				
+				Address toAddr = new InternetAddress(email); //받을 이메일 주소
+				msg.addRecipient(Message.RecipientType.TO, toAddr);
+				
+				
+				msg.setContent("아래 인증 코드를 회원가입 페이지에서 입력해주십시오.<br><br><h1>" + code + "</h1>", "text/html;charset=UTF-8"); //이메일 내용
+				
+				Transport.send(msg);
+				
+				System.out.println("메일을 성공적으로 전송하였습니다.");
+				
+				
+			} catch(Exception e) {
+				
+			}
+			
+			
+		}
+	}).start();
 
-	String email = request.getParameter("email").toString(); //회원 이메일
 	
-	Properties p = new Properties(); //stmp 서버에 접속하기 위한 정보를 담을 객체
-	p.put("mail.smtp.host", "gmail-smtp.l.google.com");
-	p.put("mail.smtp.starttls.enable", "true");
-	p.put("mail.smtp.auth", "true");
-	p.put("mail.smtp.debug", "true");
-	p.put("mail.smtp.socketFactory.port", "465");
-	p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-	p.put("mail.smtp.socketFactory.fallback", "false");
-	
-	
-	
-	try {
-		
-		Authenticator auth = new SMTPAuthenticator();
-		Session ses = Session.getInstance(p, auth);
-		
-		ses.setDebug(true);
-		
-		MimeMessage msg = new MimeMessage(ses); //메일 내용을 담을 객체
-		msg.setSubject("회원가입 인증코드"); //메일 제목
-		
-		Address fromAddr = new InternetAddress("toonraon5@gmail.com"); //보내는 이메일 주소
-		msg.setFrom(fromAddr);
-		
-		Address toAddr = new InternetAddress(email); //받을 이메일 주소
-		msg.addRecipient(Message.RecipientType.TO, toAddr);
-		
-		
-		//인증코드 생성 (숫자 문자 문자 숫자 문자로 구성되어있음, 영어-숫자-영어-영어-숫자로 총 5자리)
-		code = "";
-		code += getRandomChar();
-		code += getRandomDigit();
-		code += getRandomChar();
-		code += getRandomChar();
-		code += getRandomDigit();
-		
-		
-		msg.setContent("아래 인증 코드를 회원가입 페이지에서 입력해주십시오.<br><br><h1>" + code + "</h1>", "text/html;charset=UTF-8"); //이메일 내용
-		
-		Transport.send(msg);
-		
-		System.out.println("메일을 성공적으로 전송하였습니다.");
-		
-		
-	} catch(Exception e) {
-		
-	}
 %>
 
 <script type="text/javascript">
