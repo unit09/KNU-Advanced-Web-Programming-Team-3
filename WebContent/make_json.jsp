@@ -65,6 +65,7 @@
 			tempJson.put("time", start_time);
 			tempJson.put("place", rs2.getString("name"));
 			tempJson.put("location", rs2.getString("floor"));
+			tempJson.put("timeslot", timeslot_id);
 			
 			String query3 = "select * from ticket, timeslot where timeslot_id = timeslot.id and timeslot_id = " + timeslot_id +" and movie = " + movie_id;
 			stmt3 = conn.createStatement();
