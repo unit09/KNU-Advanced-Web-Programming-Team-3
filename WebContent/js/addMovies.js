@@ -5,7 +5,7 @@ function CheckAddMovies() {
 	var moviefloor = document.querySelector("[name=floor]");
 	var movieservice = document.querySelector("[name=service]");
 	var movieprice = document.querySelector("[name=price]");
-			
+	
 	if(moviename.value == ""){
 		swal("정보부족!", "영상을 선택해주세요.", "error");
 		return;
@@ -22,7 +22,7 @@ function CheckAddMovies() {
 		swal("정보부족!", "0원에서 2만원 사이의 값을 입력해주세요.", "error");
 		return;
 	}
-			
+
 	swal({
 		title: "영화시간표 추가",
 		text: "입력하신 정보로 영화시간표를 추가하시겠습니까?",
