@@ -40,8 +40,6 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
             }, {})
             
             const $date = document.querySelector(".selected");
-            console.log(date_data);
-            console.log($date.firstChild.innerHTML);
             
             let date_a = Object.keys(date_data);
 
