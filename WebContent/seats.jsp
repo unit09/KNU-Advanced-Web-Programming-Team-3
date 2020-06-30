@@ -10,8 +10,10 @@
 	
 	<body>
 		<%
+			request.setCharacterEncoding("utf-8");
 			String userId = (String)session.getAttribute("userId");
-			int timeslotId = 7;	// 여기에는 필요없나?
+			int timeslotId = Integer.parseInt((String)request.getParameter("ts"));
+			session.setAttribute("timeslot", timeslotId);
 		%>
 	
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,7 +69,6 @@
 			
 			handler.closeCon();
 		%>
-	
 	
 		<div class = "page for-center">
 			<div class = "screen" style = "font-size : 24px; text-align : center;"> Screen </div>

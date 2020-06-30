@@ -34,11 +34,19 @@
           		<a class="nav-link" href="./index.jsp">Movie Info</a>
         	</li>
         	<li class="nav-item">
-          		<a class="nav-link" href="./seats.jsp">Movie Reservation</a>
+          		<a class="nav-link" href="./timetable.jsp">Movie Reservation</a>
         	</li>
         	<% if(session.getAttribute("userId") != null && session.getAttribute("userId").equals("test")){ %>
         		<li class="nav-item">
           			<a class="nav-link" href="./addMovies.jsp">Timetable Addition</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="./deleteMovies.jsp">Timetable Deletion</a>
+        		</li>
+        	<% } %>
+        	<% if(session.getAttribute("userId") != null) { %>
+        		<li class="nav-item">
+          			<a class="nav-link" href="./myPage.jsp">My Page</a>
         		</li>
         	<% } %>
       	</ul>

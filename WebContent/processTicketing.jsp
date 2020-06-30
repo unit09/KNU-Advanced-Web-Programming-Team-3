@@ -9,7 +9,7 @@
 	String arr = request.getParameter("arr");
 	String[] checked = arr.split(",");
 	String userId = (String)session.getAttribute("userId");
-	int timeslotId = 7;
+	int timeslotId = (int)session.getAttribute("timeslot");
 	
 	String dbURL = "jdbc:mysql://jjo.kr:33066/boram3jo?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC";                    
     String dbID = "boram3jo";
@@ -69,5 +69,5 @@
 	}
     
     
-	response.sendRedirect("thanks.jsp");
+	response.sendRedirect("thanks.jsp");	// 이거 표현방식 바꿀까
 %>

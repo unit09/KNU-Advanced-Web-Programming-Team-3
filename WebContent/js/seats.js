@@ -92,5 +92,4 @@ function check(user_id){
       		});
         }
     }
-	
 }

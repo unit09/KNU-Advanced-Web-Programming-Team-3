@@ -2,6 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="EUC-KR"%>
 
 <%
+	if(session.getAttribute("userId") == null || !session.getAttribute("userId").equals("test")){
+		response.sendRedirect("errors.jsp");
+		return;
+	}
+
 	Connection conn = null;                                        // null로 초기화 한다.
 	Statement stmt = null; // SQL구문을 실행
 	Statement stmt2 = null;

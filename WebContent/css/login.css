@@ -1,20 +1,14 @@
 .form-login {
 	width: 100%;
 	margin: auto;
+	margin-top: 50px;
 	max-width: 400px;
 }
 
-html, body {
-	height: 100%;
-}
-
 .container {
-	height: 100%;
 	display: flex;
 	align-content: center;
 }
-
-
 
 
 .input-title {
@@ -27,3 +21,20 @@ html, body {
 .-mt-5px {
 	margin-top: -5px;
 }
+
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.sidebar {
+	background-color: #ececec;
+	flex-grow: 200px;
+}
+
+/*.nav-item {
+	margin-bottom: 10px;
+	font-size: small;
+	font-weight: 600;
+}*/

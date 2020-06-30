@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "org.json.simple.JSONObject" %>
 <%@ page import = "org.json.simple.JSONArray" %>
 <%@ page import="java.sql.*"%>
 
 <%
-
-
 	Connection conn = null;                                        // null로 초기화 한다.
 	Statement stmt1 = null; // SQL구문을 실행
 	Statement stmt2 = null;

@@ -40,6 +40,8 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
             }, {})
             
             const $date = document.querySelector(".selected");
+            console.log(date_data);
+            console.log($date.firstChild.innerHTML);
             
             let date_a = Object.keys(date_data);
 
@@ -94,6 +96,9 @@ fetch("./make_json.jsp").then(res => res.json()).then(data => {
                                 if(movie_location == movie_place_detail.place)
                                     $info.append($box);
         
+                                $box.addEventListener("click", function() {
+                                	location.href = './seats.jsp?ts=' + movie_place_detail.timeslot;
+                                });
                             }
                         }
                     }

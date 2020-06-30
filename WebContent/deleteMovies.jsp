@@ -5,6 +5,11 @@
 <%@ page import="java.util.Arrays" %>
 
 <%
+	if(session.getAttribute("userId") == null || !session.getAttribute("userId").equals("test")){
+		response.sendRedirect("errors.jsp");
+		return;
+	}
+
 	Connection conn = null;                                        // null로 초기화 한다.
 	Statement stmt = null; // SQL구문을 실행
 	ResultSet rs = null; // SQL구문의 실행결과를 저장
@@ -129,7 +134,6 @@
 		    // 7. 커넥션 종료
 		    if(conn != null) try { conn.close(); } catch(SQLException ex) {}
 		%>
-		
 	<%@ include file="footer.jsp" %>
 	</body>
 </html>
