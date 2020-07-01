@@ -21,7 +21,7 @@
 	<body>
 		<script>
 			swal({
-				title: "정상적으로 로그인하였습니다",
+				title: "정상적으로 로그아웃하였습니다",
 				icon: "success"
 			}).then((result)=>{
 				if(result){
