@@ -89,6 +89,8 @@
 				<div class="col-sm-3">
 					<select class="form-control" name="service">
 					<option>2D</option>
+					<option>3D</option>
+					<option>4D</option>
 					</select>
 				</div>
 			</div>
