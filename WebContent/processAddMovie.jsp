@@ -23,7 +23,8 @@
 		String checkQuery = "select * from timeslot t, movie m where t.place = " + place + " and m.id = " + moviename +
 							" and (((date_format(t.endtime, '%Y-%m-%d %H:%i:%s') >= date_format('" + time + "', '%Y-%m-%d %H:%i:%s'))" +
 									" and (date_format(t.starttime, '%Y-%m-%d %H:%i:%s') <= date_format('" + time + "', '%Y-%m-%d %H:%i:%s')))" +
-							" or ((date_format(t.starttime, '%Y-%m-%d %H:%i:%s') <= date_format(date_add('" + time + "', INTERVAL m.runtime MINUTE), '%Y-%m-%d %H:%i:%s'))))";
+							" or ((date_format(t.starttime, '%Y-%m-%d %H:%i:%s') <= date_format(date_add('" + time + "', INTERVAL m.runtime MINUTE), '%Y-%m-%d %H:%i:%s'))" +
+									"and (date_format(t.starttime, '%Y-%m-%d %H:%i:%s') >= date_format('" + time +"', '%Y-%m-%d %H:%i:%s'))))";
 		
 		String query = "insert into timeslot(movie,place,starttime,endtime,price)values('" 
 		+ moviename + "','" + place + "','" + time + "',(select cast('" + time 
