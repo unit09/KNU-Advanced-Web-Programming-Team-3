@@ -19,6 +19,8 @@
     Statement stmt = null;
     PreparedStatement pstmt = null;
     
+    boolean flag = true;
+    
     try {
     	Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(dbURL,dbID,dbPassword);
@@ -38,8 +40,9 @@
     		rs = stmt.executeQuery(sql);
     		
     		if(rs.next()) {
-    			response.sendRedirect("sorry.jsp");
-    			return;
+    			//response.sendRedirect("sorry.jsp");
+    			flag = false;
+    			break;
     		}
     		else {
     			pstmt.setString(1, userId);
@@ -68,6 +71,31 @@
 		System.out.println(e.getMessage());
 	}
     
-    
-	response.sendRedirect("thanks.jsp");	// 이거 표현방식 바꿀까
+    if(flag){
+    	response.sendRedirect("thanks.jsp");
+    }
 %>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<title>CINE KNU</title>
+	</head>
+	<body>
+		<script>
+			<% if(!flag){ %>
+				swal({
+		      		title: "Oops!",
+		      		text: "이미 예약된 좌석입니다. 다른 좌석을 선택해주시기 바랍니다.",
+		      		icon: "error",
+		      	})
+		      	.then((result)=>{
+		      		if(result){
+		      			location.href = './seats.jsp?ts=' + '<%= timeslotId %>';
+		      		}
+		      	});
+			<% } %>
+		</script>
+	</body>
+</html>

@@ -10,8 +10,14 @@
 	
 	<body>
 		<%
-			request.setCharacterEncoding("utf-8");
+			request.setCharacterEncoding("utf-8");		
 			String userId = (String)session.getAttribute("userId");
+			
+			if(request.getParameter("ts") == null){
+				response.sendRedirect("errors.jsp");
+				return;
+			}
+			
 			int timeslotId = Integer.parseInt((String)request.getParameter("ts"));
 			session.setAttribute("timeslot", timeslotId);
 		%>
