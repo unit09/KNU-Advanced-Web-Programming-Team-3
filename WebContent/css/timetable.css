@@ -84,7 +84,7 @@
     background-color: black;
     color: white;
 }
-button:focus{
+#calendar button:focus{
     outline: none;
 }
 
