@@ -129,10 +129,32 @@ function checkDeleteMovies() {
 	})
 	.then((result) => {
 		if(result){
-			var movie_val = document.getElementById("moviename").options[document.getElementById("moviename").selectedIndex].value;
-			var place_val = document.getElementById("place").options[document.getElementById("place").selectedIndex].value;
-			var floor_val = document.getElementById("floor").options[document.getElementById("floor").selectedIndex].value;
-			var time_val = document.getElementById("starttime").options[document.getElementById("starttime").selectedIndex].value;
+			var moviename = document.querySelector("[id=moviename]"); //영화 이름
+			var movietime = document.querySelector("[id=time]");
+			var movieplace = document.querySelector("[id=place]");
+			var moviefloor = document.querySelector("[id=floor]");
+			   
+			if(moviename.value == ""){
+				swal("정보부족!", "영상을 선택해주세요.", "error");
+				return;
+			}
+			if(movieplace.value == ""){
+			    swal("정보부족!", "상영관을 선택해주세요.", "error");
+			    return;
+			}
+			if(movietime.value == false){
+			    swal("정보부족!", "시간을 설정해주세요.", "error");
+			    return;
+			}
+			if(moviefloor.value == ""){
+			    swal("정보부족!", "층을 선택해주세요.", "error");
+			    return;
+			}
+			
+			var movie_val = moviename.value;//document.getElementById("moviename").options[document.getElementById("moviename").selectedIndex].value;
+			var place_val = movieplace.value;//document.getElementById("place").options[document.getElementById("place").selectedIndex].value;
+			var floor_val = moviefloor.value;//document.getElementById("floor").options[document.getElementById("floor").selectedIndex].value;
+			var time_val = movietime.value;//document.getElementById("starttime").options[document.getElementById("starttime").selectedIndex].value;
 			
 			for(var i = 0; i < ts.length; i++){
 				if(ts[i].title == movie_val && ts[i].place == place_val && ts[i].floor == floor_val && ts[i].starttime == time_val){
