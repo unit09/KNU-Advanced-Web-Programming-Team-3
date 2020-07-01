@@ -18,6 +18,14 @@ function CheckAddMovies() {
 		swal("정보부족!", "시간을 설정해주세요.", "error");
 		return;
 	}
+	if(moviefloor.value == ""){
+		swal("정보부족!", "층을 선택해주세요.", "error");
+		return;
+	}
+	if(movieservice.value == ""){
+		swal("정보부족!", "서비스를 선택해주세요.", "error");
+		return;
+	}
 	if(movieprice.value < 0 || movieprice.value > 20000 || movieprice.value == ""){
 		swal("정보부족!", "0원에서 2만원 사이의 값을 입력해주세요.", "error");
 		return;
