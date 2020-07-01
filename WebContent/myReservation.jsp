@@ -61,6 +61,13 @@
 						starttime = sdf.format(dt);
 						
 						i++;
+						
+						boolean isPast = false; //현재 시간보다 과거의 예매인 경우 true
+						Date now = new Date(); //현재 시간
+						if(now.compareTo(dt) > 0) { //now > dt
+							isPast = true;
+						}
+						System.out.println(now.toString() + " " + dt.toString() + " " + now.compareTo(dt));
 						%>
 				        <div class="col-md-4">
 				          <div class="card mb-4 shadow-sm">
@@ -76,7 +83,7 @@
 				              <div class="d-flex justify-content-between align-items-center">
 				                <div class="btn-group">
 				                	<form name="delres<%= i %>" id="delres<%= i %>" action="./processDeleteReservation.jsp?sel=<%= i %>" class="form-horizontal" method="post">
-				                		<input type="button" class="btn btn-sm btn-danger" value="예약취소" onclick="deleteTicket('<%= i %>','<%= timeslotId %>','<%= seatNumber %>')">
+				                		<input type="button" class="btn btn-sm btn-danger" value="예약취소" onclick="deleteTicket('<%= i %>','<%= timeslotId %>','<%= seatNumber %>')" <% if(isPast) out.println("hidden"); %>>
 				                		<input type="hidden" name="ts<%= i %>" id="ts<%= i %>">
 				                		<input type="hidden" name="seatNum<%= i %>" id="seatNum<%= i %>">				                		
 				                	</form>

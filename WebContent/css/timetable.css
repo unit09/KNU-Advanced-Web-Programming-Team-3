@@ -80,12 +80,14 @@
     border:none;
     transition: all ease 300ms;
 }
+
+#calendar button:focus{
+    outline: none;
+}
+
 #calendar>.selected>button{
     background-color: black;
     color: white;
-}
-#calendar button:focus{
-    outline: none;
 }
 
 .Saturday, .Saturday button{
@@ -157,10 +159,12 @@ li.age-19::before{
 }
 
 .content .info_content .location{
+    display: flex;
     font-weight: bold;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    width:100%;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .content .info_content .info_box{
