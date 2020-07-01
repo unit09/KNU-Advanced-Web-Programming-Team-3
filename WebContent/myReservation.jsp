@@ -49,14 +49,18 @@
 						String timeslotId = map.get("timeslotId").toString();
 						
 						//2020-06-25를 2020년 6월 25일 목요일 string으로 변경
+						/*
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						Date dt = sdf.parse(date);
 						sdf = new SimpleDateFormat("yyyy년 M월 d일");
 						date = sdf.format(dt);
+						*/
 						
 						//2020-06-25 16:00:00를 16시 00분으로 변경
-						sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-						dt = sdf.parse(starttime);
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+						Date dt = sdf.parse(starttime);
+						sdf = new SimpleDateFormat("yyyy년 M월 d일");
+						date = sdf.format(dt);
 						sdf = new SimpleDateFormat("a h시 m분");
 						starttime = sdf.format(dt);
 						
