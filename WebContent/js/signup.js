@@ -137,7 +137,7 @@ function checkAll() {
 	
 	//이메일 인증코드 검사
 	if($("#code-check").val() != "true") {
-		alert("이메일 인증을 해주세요. 인증코드 전송을 누른 후 새로 뜨는 팝업창이 자동으로 사라지기 전까지 직접 끄면 안 됩니다.");
+		alert("이메일 인증을 해주세요.");
 		return false;
 	}
 	
