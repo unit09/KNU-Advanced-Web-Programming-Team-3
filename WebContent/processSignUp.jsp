@@ -21,11 +21,10 @@
 	
 %>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
+		<meta charset="UTF-8">
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<title>CINE KNU</title>
 	</head>
